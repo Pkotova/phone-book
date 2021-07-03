@@ -1,0 +1,41 @@
+<h1 class="mt-4">Phone book</h1>
+<h2>Hello, <%=user.name%></h2>
+<a href="/users/logout" class="btn btn-secondary">Logout</a>
+<form action="/contacts/add-new" method="POST">
+    <input type="text" placeholder="contact" name="contact">
+    <input type="text" placeholder="phone" name="phone">
+    <button type="submit">Submit</button>
+</form>
+<table class="table">
+
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% for(var i=0; i < contact.length; i++) { %>
+    <tr>
+        <th scope="row"><%=i+1%></th>
+        <td><%=contact[i].name%></td>
+        <td><%=contact[i].phone%></td>
+        <td><a href="contacts/delete-contact/<%=contact[i].id%>" >delete</a>
+
+
+        <td id="modal-edit-user">
+            <form action="/contacts/update-contact/<%=contact[i].id%>" method="post">
+                <input type="text" placeholder="contact" value="<%=contact[i].name%>" name="newcontact">
+                <input type="text" placeholder="phone" value="<%=contact[i].phone%>" name="newphone">
+                <button type="submit">Update</button>
+            </form>
+        </td>
+
+    </tr>
+    <% } %>
+    </tbody>
+
+</table>
+<script src="scripts.js"></script>
